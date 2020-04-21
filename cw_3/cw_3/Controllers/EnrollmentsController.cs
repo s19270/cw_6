@@ -15,11 +15,11 @@ namespace cw_3.Controllers
     public class EnrollmentsController : ControllerBase
     {
         public readonly string conString = "Data Source=db-mssql;Initial Catalog=s19270;Integrated Security=True";
-        SqlServerDbService service = new SqlServerDbService();
+        IStudentDbService service = new SqlServerDbService();
         [HttpPost]
         public IActionResult CreateStudent(NewStudent student)
         {
-            /*if (student.Studies == null || student.FirstName == null ||
+            if (student.Studies == null || student.FirstName == null ||
                 student.LastName == null || student.Birthdate == null ||
                 student.IndexNumber == null) return NotFound("Brak danych");
             using (SqlConnection con = new SqlConnection(conString))
@@ -62,8 +62,8 @@ namespace cw_3.Controllers
                     trans.Rollback("Wystapily bledy");
                 }
                 return NotFound("Wystapily bledy");
-            }*/
-            return Ok(service.AddStudent(student));
+            }
+            //return Ok(service.AddStudent(student));
         }
         [HttpPost("promotions")]
         public IActionResult Promote(String studies, int semester)
